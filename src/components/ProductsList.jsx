@@ -18,7 +18,7 @@ class ProductsList extends React.Component {
           <p>Nenhum produto foi encontrado</p>
         </div> : 
           <div className='productsBoard'> { products.map((product) => (
-            <div>
+            <div key={ product.id }>
               <ProductCard
                 key={ product.id }
                 productInfo={ product }

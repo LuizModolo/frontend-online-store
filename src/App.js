@@ -25,7 +25,7 @@ class App extends React.Component {
             {' '}
             <span>&#169;</span>
           </h4>
-          <p><a href="https://www.linkedin.com/in/luizfcmodolo/" target="_blank" rel="noreferrer">Luiz Modolo</a></p>
+          <p><a href="https://www.linkedin.com/in/luizfcmodolo/" target="_blank" rel="noopener noreferrer">Luiz Modolo</a></p>
         </footer>
       </BrowserRouter>
     );

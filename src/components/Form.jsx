@@ -55,6 +55,7 @@ class Form extends React.Component {
       });
       event.target.reset();
     }
+    window.location.reload();
   }
 
   render() {
@@ -62,10 +63,22 @@ class Form extends React.Component {
     return (
       <form action="" onSubmit={ this.onFormSubmit }>
         <label htmlFor="user-email">
-          Email:
+          E-mail:
           <input type="email" id="user-email" name="email" onChange={ this.onChange } />
         </label>
-        <label htmlFor="grade">
+        <label htmlFor="detail-evaluation">
+          Opinião sobre o produto:
+          <textarea
+            name="evaluation"
+            data-testid="product-detail-evaluation"
+            id="detail-evaluation"
+            cols="30"
+            rows="10"
+            onChange={ this.onChange }
+          />
+        </label>
+        <label className='ratingRadio' htmlFor="grade">
+          Nota:
           <input type="radio" name="grade" value="1" onChange={ this.onChange } />
           <span>1</span>
           <input type="radio" name="grade" value="2" onChange={ this.onChange } />
@@ -76,16 +89,6 @@ class Form extends React.Component {
           <span>4</span>
           <input type="radio" name="grade" value="5" onChange={ this.onChange } />
           <span>5</span>
-        </label>
-        <label htmlFor="detail-evaluation">
-          <textarea
-            name="evaluation"
-            data-testid="product-detail-evaluation"
-            id="detail-evaluation"
-            cols="30"
-            rows="10"
-            onChange={ this.onChange }
-          />
         </label>
         <button type="submit" name="send" disabled={ isDisabled }>Enviar</button>
       </form>

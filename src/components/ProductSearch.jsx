@@ -25,7 +25,7 @@ class ProductSearch extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='searchInto'>
         <input
           data-testid="query-input"
           onChange={ this.onChange }

@@ -35,7 +35,7 @@ class ProductDetails extends React.Component {
     const { product } = this.state;
     const newItem = {
       id: product.id,
-      image: product.thumbnail,
+      image: product.thumbnail.replace(/\w.jpg/, 'H.jpg'),
       name: product.title,
       price: product.price,
       stock: product.available_quantity,
@@ -66,41 +66,55 @@ class ProductDetails extends React.Component {
       ? getEvaluations.filter((ev) => ev.id === product.id) : false;
     const { price, thumbnail: image, title: productName } = product;
     return (
-      <div>
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          <Cart quantity={ quantity } />
-        </Link>
-        <h4 data-testid="product-detail-name">
-          { productName }
-        </h4>
-        <h3>
-          R$
-          { price }
-        </h3>
-        <img src={ image } alt="" />
-        { product.shipping.free_shipping
-        && <p data-testid="free-shipping">Frete Grátis!</p> }
-        <button
-          type="button"
-          onClick={ this.addCartDetails }
-          data-testid="product-detail-add-to-cart"
-        >
-          Adicionar ao Carrinho
+      <div className='productDetailPage'>
+        <div className='linkCart2'>
+          <Link
+            to="/shopping-cart"
+            data-testid="shopping-cart-button"
+            className='cartBtn2'
+          >
+            <Cart quantity={ quantity } />
+          </Link>
+        </div>
+        <div className='detailMain'>
+          <div className='detailPage'>
+            <div className='detailProduct'>
+              <h4 data-testid="product-detail-name">
+                { productName }
+              </h4>
+              <img src={ image.replace(/\w.jpg/, 'H.jpg') } alt="" />
+              <h3>
+                R$
+                { price }
+              </h3>
+              { product.shipping.free_shipping
+              && <p data-testid="free-shipping">Frete Grátis!</p> }
+              <button
+                type="button"
+                onClick={ this.addCartDetails }
+                data-testid="product-detail-add-to-cart"
+              >
+                Adicionar ao Carrinho
 
-        </button>
-        <Link to="/">Voltar</Link>
-        <Form id={ product.id } />
-        {
-          filteredEvaluations
-            && filteredEvaluations
-              .map((evaluation, index) => (<EvaluationCard
-                evaluation={ evaluation }
-                key={ index }
-              />))
-        }
+              </button>
+              <Link to="/">Voltar</Link>
+            </div>
+            <div className='detailForm'>
+            <Form id={ product.id } />
+            </div>
+            <div className='customerGrade'>
+              <h3>Opinião dos usuários:</h3>
+                {
+                  filteredEvaluations
+                    && filteredEvaluations
+                      .map((evaluation, index) => (<EvaluationCard
+                        evaluation={ evaluation }
+                        key={ index }
+                      />))
+                }
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

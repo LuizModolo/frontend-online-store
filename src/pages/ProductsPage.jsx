@@ -64,20 +64,27 @@ class ProductsPage extends React.Component {
     const { productsList, loading, initialMessage, quantity } = this.state;
     return (
       <div>
-        <ProductSearch onSearch={ this.onSearch } />
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          <Cart quantity={ quantity } />
-        </Link>
-        <ProductsList
-          products={ productsList }
-          loading={ loading }
-          initialMessage={ initialMessage }
-          getQuantity={ this.getQuantity }
-        />
-        <ProductFilters onFilter={ this.onFilter } />
+        <div className='searchBar'>
+          <ProductSearch onSearch={ this.onSearch } />
+          <div className='linkCart'>
+            <Link
+              to="/shopping-cart"
+              data-testid="shopping-cart-button"
+              className='cartBtn'
+            >
+              <Cart quantity={ quantity } />
+            </Link>
+          </div>
+        </div>
+        <div className='mainContent'>
+          <ProductFilters onFilter={ this.onFilter } />
+          <ProductsList
+            products={ productsList }
+            loading={ loading }
+            initialMessage={ initialMessage }
+            getQuantity={ this.getQuantity }
+          />
+        </div>
       </div>
     );
   }

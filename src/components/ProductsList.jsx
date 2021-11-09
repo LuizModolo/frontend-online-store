@@ -13,17 +13,23 @@ class ProductsList extends React.Component {
     const renderProductsList = () => {
       const noResults = !loading && !initialMessage && products.length === 0;
       const result = noResults
-        ? <p>Nenhum produto foi encontrado</p> : products
-          .map((product) => (
-            <ProductCard
-              key={ product.id }
-              productInfo={ product }
-              hasClicked={ this.hasClicked }
-            />));
+        ? 
+        <div className='noProductParagraph'>
+          <p>Nenhum produto foi encontrado</p>
+        </div> : 
+          <div className='productsBoard'> { products.map((product) => (
+            <div>
+              <ProductCard
+                key={ product.id }
+                productInfo={ product }
+                hasClicked={ this.hasClicked }
+              />
+            </div>)) } 
+          </div>;
       return result;
     };
     return (
-      <div>
+      <div className='serachParagraph'>
         {
           (!loading && initialMessage)
             && (

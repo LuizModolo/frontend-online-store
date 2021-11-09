@@ -33,11 +33,11 @@ class ProductFilters extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
+      <div className='productsFilter'>
         <ul className="categories-list">
           {
             categories.map((category) => (
-              <li key={ category.id }>
+              <li key={ category.id } className='categoryItem'>
                 {' '}
                 <label htmlFor={ category.id }>
                   {category.name}

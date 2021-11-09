@@ -76,7 +76,7 @@ class Checkout extends Component {
             <div key={ product.name }>
               <img src={ product.image } alt={ product.name } />
               <h1>{ product.name }</h1>
-              <p>{ product.quantity }</p>
+              <p>{ product.quantity } Unid.</p>
               <p>
                 Preço Unitário: R$
                 {' '}

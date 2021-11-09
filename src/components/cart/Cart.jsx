@@ -6,7 +6,7 @@ class Cart extends React.Component {
   render() {
     const { quantity } = this.props;
     return (
-      <div>
+      <div className='divLinkCart'>
         <img src={ cartIcon } alt="Cart Icon" />
         <span data-testid="shopping-cart-size">{quantity}</span>
       </div>

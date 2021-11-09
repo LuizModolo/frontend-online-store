@@ -7,9 +7,10 @@ class EvaluationCard extends React.Component {
     const { email, grade, evaluation: comment } = evaluation;
     return (
       <div className="evaluation-card">
-        <h2>{email}</h2>
+        <h2>E-mail: {email}</h2>
         <span>
           Nota:
+          {' '}
           {grade}
         </span>
         <p>{comment}</p>

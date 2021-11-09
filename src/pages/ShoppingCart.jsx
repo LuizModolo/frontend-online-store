@@ -92,64 +92,76 @@ class ShoppingCart extends React.Component {
   render() {
     const { productArray, disabledButton } = this.state;
     return (
-      <div>
-        <Link
-          to="/checkout"
-          data-testid="checkout-products"
-        >
-          <button type="button">Finalizar Compra</button>
-        </Link>
-        {!productArray ? (
-          <p data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio
-          </p>)
-          : productArray.map((product) => (
-            <div key={ product.name }>
-              <img src={ product.image } alt={ product.name } />
-              <h1 data-testid="shopping-cart-product-name">{ product.name }</h1>
-              <div>
-                <button
-                  data-testid="product-decrease-quantity"
-                  onClick={ this.decreaseQuantity }
-                  type="button"
-                  className={ product.id }
-                >
-                  -
+      <div className='cartPage'>
+        <div className='mainCart'>
+          <h2>Confira os itens do seu carrinho:</h2>
+          {!productArray ? (
+            <p data-testid="shopping-cart-empty-message">
+              Seu carrinho está vazio
+            </p>)
+            : productArray.map((product) => (
+              <div className='cartProductSession' key={ product.name }>
+                <img src={ product.image } alt={ product.name } />
+                <h1 data-testid="shopping-cart-product-name">{ product.name }</h1>
+                <div className='quantitySession'>
+                  <button
+                    data-testid="product-decrease-quantity"
+                    onClick={ this.decreaseQuantity }
+                    type="button"
+                    className={ product.id }
+                  >
+                    -
 
-                </button>
-                <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
+                  </button>
+                  <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
+                  <button
+                    data-testid="product-increase-quantity"
+                    onClick={ this.increaseQuantity }
+                    type="button"
+                    className={ product.id }
+                    disabled={ disabledButton }
+                  >
+                    +
+
+                  </button>
+                </div>
+                <div className='priceCart'>
+                  <p>
+                    Preço Unitário: R$
+                    {' '}
+                    { product.price }
+                  </p>
+                  <p>
+                    {' '}
+                    Preço Total: R$
+                    {' '}
+                    { (product.price * product.quantity).toFixed(2) }
+                  </p>
+                </div>
                 <button
-                  data-testid="product-increase-quantity"
-                  onClick={ this.increaseQuantity }
                   type="button"
                   className={ product.id }
-                  disabled={ disabledButton }
+                  onClick={ this.removeItem }
                 >
-                  +
+                  Remover
 
                 </button>
               </div>
-              <p>
-                Preço Unitário: R$
-                {' '}
-                { product.price }
-              </p>
-              <p>
-                {' '}
-                Preço Total: R$
-                {' '}
-                { (product.price * product.quantity).toFixed(2) }
-              </p>
-              <button
-                type="button"
-                className={ product.id }
-                onClick={ this.removeItem }
-              >
-                Remover
-
-              </button>
-            </div>
-          ))}
+            ))}
+        </div>
+        <div className='cartButtons'>
+          <Link
+            to="/checkout"
+            data-testid="checkout-products"
+          >
+            <button type="button">Finalizar Compra</button>
+          </Link>
+          <Link
+           to="/"
+          >
+            <button type="button">Continuar Comprando</button>
+          </Link>
+        </div>
       </div>
     );
   }

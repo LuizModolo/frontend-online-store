@@ -16,7 +16,7 @@ class ProductCard extends React.Component {
     const { product } = this.state;
     const newItem = {
       id: product.id,
-      image: product.thumbnail,
+      image: product.thumbnail.replace(/\w.jpg/, 'H.jpg'),
       name: product.title,
       price: product.price,
       stock: product.available_quantity,
@@ -42,17 +42,18 @@ class ProductCard extends React.Component {
 
   render() {
     const { productInfo } = this.props;
-    const { title, thumbnail, id,
+    const { title, thumbnail, id, price,
       shipping: { free_shipping: freeShipping } } = productInfo;
     return (
-      <div>
+      <div className='productCart'>
         <Link
           data-testid="product-detail-link"
           to={ { pathname: `/product/${id}`, state: { ...productInfo } } }
         >
           <div data-testid="product" key={ id }>
             <h3>{ title }</h3>
-            <img src={ thumbnail } alt={ title } />
+            <img src={ thumbnail.replace(/\w.jpg/, 'H.jpg') } alt={ title } />
+            <p>R$ { price.toFixed(2) }</p>
           </div>
         </Link>
         { freeShipping && <p data-testid="free-shipping">Frete Grátis!</p> }

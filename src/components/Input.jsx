@@ -5,8 +5,7 @@ class Input extends Component {
   render() {
     const { labelText, testId, name, type, value, onChange, maxLength } = this.props;
     return (
-      <div>
-        <label htmlFor={ name }>
+        <label htmlFor={ name } id={ testId }>
           { labelText }
           <input
             data-testid={ testId }
@@ -18,7 +17,6 @@ class Input extends Component {
             maxLength={ maxLength }
           />
         </label>
-      </div>
     );
   }
 }
